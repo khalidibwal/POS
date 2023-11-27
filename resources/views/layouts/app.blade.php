@@ -33,7 +33,7 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                    <a class="nav-link font-weight-bolder" href="{{url('transcation')}}">Point Of Sales Laravel                          
+                    <a class="nav-link font-weight-bolder" href="{{url('transcation')}}">Point Of Sales PT KALAHA GROUP                         
                         </a>
                     </li>
                     <li class="nav-item dropdown">

@@ -21,8 +21,8 @@
                                 <td>{{$index+1}}</td>
                                 <td>{{$item->invoices_number}}</td>
                                 <td>{{$item->user->name}}</td>
-                                <td>{{$item->pay}}</td>
-                                <td>{{$item->total}}</td>
+                                <td>@currency($item->pay)</td>
+                                <td>@currency($item->total)</td>
                             <td><a href="{{url('/transcation/laporan', $item->invoices_number )}}" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></a></td>
                             </tr>
                         @endforeach                        

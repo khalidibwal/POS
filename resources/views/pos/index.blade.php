@@ -143,7 +143,7 @@
                         <tr>
                             <th>
                                 <form action="{{ url('/transcation') }}" method="get">
-                                    PPN 10%
+                                    PB1 10%
                                     <input type="checkbox" {{ $data_total['tax'] > 0 ? "checked" : ""}} name="tax"
                                         value="true" onclick="this.form.submit()">
                                 </form>
@@ -204,7 +204,7 @@
                         </tr>
                         @if($data_total['tax'] > 0)
                         <tr>
-                            <th>PPN 10%</th>
+                            <th>PB1 10%</th>
                             <th class="text-right">Rp.
                                 {{ number_format($data_total['tax'],2,',','.') }}</th>
                         </tr>
@@ -261,7 +261,7 @@
     @if(Session::has('success'))
     <script>
         toastr.success(
-            'Transaksi berhasil | Thank Your from Tahu Coding'
+            'Transaksi berhasil | Thank Your from PT KALAHA GROUP'
         )
 
     </script>

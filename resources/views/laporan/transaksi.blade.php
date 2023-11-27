@@ -39,12 +39,12 @@
                                 <tr>
                                     <td width="38%">Pay</td>
                                     <td width="2%">:</td>
-                                    <td width="60%">{{$transaksi->pay}}</td>
+                                    <td width="60%">@currency($transaksi->pay),00</td>
                                 </tr>
                                 <tr>
                                     <td width="38%">Total</td>
                                     <td width="2%">:</td>
-                                    <td width="60%">{{$transaksi->total}}</td>
+                                    <td width="60%">@currency($transaksi->total),00</td>
                                 </tr>   
                                 <tr>
                                     <td width="38%">Customer</td>
@@ -69,6 +69,7 @@
                                         <tr>
                                             <td>{{$index+1}}</td>
                                             <td>{{$item->product->name}}</td>
+                                            {{logger('test')}}
                                             <td>{{$item->qty}}</td>
                                         </tr>
                                     @endforeach
