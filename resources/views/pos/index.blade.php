@@ -144,7 +144,7 @@
                             <th>
                                 <form action="{{ url('/transcation') }}" method="get">
                                     PB1 10%
-                                    <input type="checkbox" {{ $data_total['tax'] > 0 ? "checked" : ""}} name="tax"
+                                    <input type="checkbox" {{ $data_total['tax'] > 0 ? "checked" : "checked"}} name="tax"
                                         value="true" onclick="this.form.submit()">
                                 </form>
                             </th>

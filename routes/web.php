@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerMenu;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,18 @@ use Illuminate\Support\Facades\Route;
 | <!-- © 2020 Copyright: Tahu Coding -->
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/form', [CustomerMenu::class, 'showForm']);
+Route::post('/form', [CustomerMenu::class, 'processForm']);
+Route::get('/kalahaMenu', 'CustomerMenu@index')->name('kalaha');
+Route::post('/kalahaMenu/addtocart/{customer_id}/{product_id}', 'CustomerMenu@addProductCart')->name('add.to.cart');
+Route::get('/kalahaMenu/cart/{customer_id}', 'CustomerMenu@CartView')->name('CartList');
+Route::post('/kalahaMenu/increasecart/{customer_id}/{rowId}', 'CustomerMenu@increasecart')->name('increasecart');
+Route::post('/kalahaMenu/decreasecart/{customer_id}/{rowId}', 'CustomerMenu@decreasecart')->name('decreasecart');
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {  
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/products','ProductController');
     //sorry kalau ada typo penggunaan bahasa inggris krn saya orang indonesia yang mencoba belajar b.inggris
     Route::get('/transcation', 'TransactionController@index');

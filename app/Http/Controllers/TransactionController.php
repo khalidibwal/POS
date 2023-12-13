@@ -30,11 +30,12 @@ class TransactionController extends Controller
 
 
         //cart item
-        if(request()->tax){
-            $tax = "+10%";
-        }else{
-            $tax = "0%";
-        }
+        $tax = "+10%";
+        // if(request()->tax){
+        //     $tax = "+10%";
+        // }else{
+        //     $tax = "0%";
+        // }
 
         $condition = new \Darryldecode\Cart\CartCondition(array(
                 'name' => 'pajak',
@@ -80,18 +81,11 @@ class TransactionController extends Controller
             'tax' => $pajak
         ];
 
-        //kembangin biar no reload make ajax
-        //saran bagi yg mau kembangin bisa pake jquery atau .js native untuk manggil ajax jangan lupa product, cart item dan total dipisah
-        //btw saya lg mager bikin beginian.. jadi sayas serahkan sama kalian ya (yang penting konsep dan fungsi aplikasi dah kelar 100%)
-
-        //kembangin jadi SPA make react.js atau vue.js (tapi bagusnya backend sama frontend dipisah | backend cuma sebagai penyedia token sama restfull api aja)
-        //kalau make SPA kayaknya agak sulit deh krn ini package default nyimpan cartnya disession, tapi kalau gak salah didokumentasinya
-        //bilang kalau ini package bisa store datanya di database 
         return view('pos.index', compact('products','cart_data','data_total'));
     }
 
     public function addProductCart($id){
-        $product = Product::find($id);      
+        $product = Product::find($id);
                 
         $cart = \Cart::session(Auth()->id())->getContent();        
         $cek_itemId = $cart->whereIn('id', $id);  
@@ -240,10 +234,36 @@ class TransactionController extends Controller
         }        
     }
 
-    public function history(){
-        $history = Transcation::orderBy('created_at','desc')->paginate(10);
-        return view('pos.history',compact('history'));
+    // public function history(){
+    //     $history = Transcation::orderBy('created_at','desc')->paginate(10);
+    //     return view('pos.history',compact('history'));
+    // }
+    public function history(Request $request){
+        $query = Transcation::query();
+    
+        // Check if a start date is provided
+        if ($request->filled('start_date')) {
+            $start_date = $request->input('start_date');
+            $query->whereDate('created_at', '>=', $start_date);
+        }
+    
+        // Check if an end date is provided
+        if ($request->filled('end_date')) {
+            $end_date = $request->input('end_date');
+            $query->whereDate('created_at', '<=', $end_date);
+        }
+    
+        // If neither start_date nor end_date is provided, set a default date range, e.g., last 30 days
+        if (!$request->filled('start_date') && !$request->filled('end_date')) {
+            $defaultStartDate = now()->subDays(30)->format('Y-m-d');
+            $query->whereDate('created_at', '>=', $defaultStartDate);
+        }
+    
+        $history = $query->orderBy('created_at', 'desc')->paginate(10);
+    
+        return view('pos.history', compact('history'));
     }
+    
 
     public function laporan($id){
         $transaksi = Transcation::with('productTranscation')->find($id);
@@ -252,4 +272,4 @@ class TransactionController extends Controller
 
     
 }
-//© 2020 Copyright: Tahu Coding
+//© 2020 Copyright: KALAHA GROUP
