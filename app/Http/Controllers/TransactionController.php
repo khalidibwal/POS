@@ -97,7 +97,7 @@ class TransactionController extends Controller
                 \Cart::session(Auth()->id())->update($id, array(
                     'quantity' => 1
                 ));
-            }            
+            }
         }else{
              \Cart::session(Auth()->id())->add(array(
             'id' => $id,
@@ -260,6 +260,10 @@ class TransactionController extends Controller
         }
     
         $history = $query->orderBy('created_at', 'desc')->paginate(10);
+        // Calculate total price for each transaction
+        foreach ($history as $transaction) {
+            $transaction->total_price = $transaction->productTranscation->sum('product_price');
+        }
     
         return view('pos.history', compact('history'));
     }
@@ -267,6 +271,7 @@ class TransactionController extends Controller
 
     public function laporan($id){
         $transaksi = Transcation::with('productTranscation')->find($id);
+        // dd($transaksi);
         return view('laporan.transaksi',compact('transaksi'));
     }
 

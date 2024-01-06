@@ -104,7 +104,7 @@
                             @foreach ($history as $index=>$item)
                             <tr>
                                 <td>{{$index+1}}</td>
-                                <td>{{$item->user->name}}</td>
+                                <td>{{$item->name}}</td>
                                 <td>{{$item->qty}}</td>
                                 <td>{{$item->qtyChange}}</td>
                                 <td>{{$item->qty + $item->qtyChange}}</td>

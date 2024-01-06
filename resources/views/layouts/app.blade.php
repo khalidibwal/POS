@@ -46,7 +46,7 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="{{url('/transcation/history')}}">History Transcation</a>
+                      <a class="nav-link" href="{{url('/transcation/customer_history')}}">History Transcation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">User (WIP)</a>

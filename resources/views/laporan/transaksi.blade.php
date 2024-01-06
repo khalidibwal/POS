@@ -25,7 +25,7 @@
                                 <tr>
                                     <td width="38%">Admin</td>
                                     <td width="2%">:</td>
-                                    <td width="60%">{{$transaksi->user->name}}</td>
+                                    <td width="60%">{{$transaksi->name}}</td>
                                 </tr>
                                 <tr>
                                     <td width="38%">Create At</td>
@@ -64,7 +64,7 @@
                                     <th>Quantity</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                      @foreach ($transaksi->productTranscation as $index=>$item)
                                         <tr>
                                             <td>{{$index+1}}</td>
@@ -73,7 +73,7 @@
                                             <td>{{$item->qty}}</td>
                                         </tr>
                                     @endforeach
-                                </tbody>                               
+                                </tbody>                                --}}
                             </table>
                         </div>
                     </div>                  

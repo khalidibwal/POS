@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('qty');
             $table->text('description');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customer');
             $table->timestamps();
         });

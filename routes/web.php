@@ -19,6 +19,7 @@ Route::post('/form', [CustomerMenu::class, 'processForm']);
 Route::get('/kalahaMenu', 'CustomerMenu@index')->name('kalaha');
 Route::post('/kalahaMenu/addtocart/{customer_id}/{product_id}', 'CustomerMenu@addProductCart')->name('add.to.cart');
 Route::get('/kalahaMenu/cart/{customer_id}', 'CustomerMenu@CartView')->name('CartList');
+Route::post('/kalahaMenu/bayar/{customer_id}', 'CustomerMenu@bayar')->name('payment');
 Route::post('/kalahaMenu/increasecart/{customer_id}/{rowId}', 'CustomerMenu@increasecart')->name('increasecart');
 Route::post('/kalahaMenu/decreasecart/{customer_id}/{rowId}', 'CustomerMenu@decreasecart')->name('decreasecart');
 
@@ -36,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/transcation/decreasecart/{id}', 'TransactionController@decreasecart');
     Route::post('/transcation/bayar','TransactionController@bayar');
     Route::get('/transcation/history','TransactionController@history');
+    Route::get('/transcation/customer_history','CustomerMenu@history');
+    Route::get('/transcation/laporan_customer/{id}','CustomerMenu@laporan');
     Route::get('/transcation/laporan/{id}','TransactionController@laporan');
 });
 

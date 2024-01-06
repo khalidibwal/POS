@@ -12,5 +12,9 @@ class Product extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+    public function customerTransaction()
+    {
+        return $this->belongsTo(CustomerTransaction::class, 'product_id', 'id');
+    }
     
 }

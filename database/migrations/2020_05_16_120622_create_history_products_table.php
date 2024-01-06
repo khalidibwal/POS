@@ -16,7 +16,8 @@ class CreateHistoryProductsTable extends Migration
         Schema::create('history_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->string('qty',10);
             $table->string('qtyChange',10);
             $table->string('tipe',50);
